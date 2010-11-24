@@ -8,7 +8,7 @@ class AuthorizedController < InheritedResources::Base
   end
 
   # Responders
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   # Resource setup
   protected

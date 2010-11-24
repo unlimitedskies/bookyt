@@ -13,6 +13,8 @@
     /[if lt IE 7]
       = stylesheet_link_tag 'compiled/ie6.css', :media => 'screen, projection'
 
+    = stylesheet_link_tag 'flexigrid/flexigrid.css'
+
     = csrf_meta_tag
     %title
       = "#{t('application.title')} - #{controller.action_name.capitalize}"

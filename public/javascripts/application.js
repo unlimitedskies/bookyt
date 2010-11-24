@@ -97,3 +97,24 @@
 $(function() {
   $( ".combobox" ).combobox();
 });
+
+$(function() {
+  $('.list').flexigrid({
+    url: '/accounts.json',
+    method: 'GET',
+    dataType: 'json',
+    usepager: true,
+    width:    'auto',
+    height:   'auto',
+    singleSelect: true,
+    colModel : [
+      {display: 'Number', name : 'code', width : 200, sortable : true, align: 'right'},
+      {display: 'Title', name : 'title', width : 400, sortable : true, align: 'left'},
+      {display: 'Saldo', name : 'saldo', width : 100, sortable : true, align: 'right'},
+    ],
+    searchitems : [
+      {display: 'Number', name : 'code'},
+      {display: 'Title', name : 'title', isdefault: true}
+    ]
+  });
+});
