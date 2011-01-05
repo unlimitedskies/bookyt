@@ -33,3 +33,6 @@ config/deploy/*.rb
 # Bookyt Data
 # ===========
 public/booking_imports
+
+# Mediabrowser
+public/uploads
