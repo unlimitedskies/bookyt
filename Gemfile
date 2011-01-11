@@ -7,8 +7,20 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.0.0'
 
 # Database
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mysql'
+platforms :ruby do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'mysql'
+end
+
+platforms :jruby do
+  gem 'jdbc-sqlite3'
+  gem 'activerecord-jdbc-adapter'
+  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'ffi-ncurses'
+  gem 'jruby-openssl'
+  gem 'jruby-rack'
+  gem 'warbler'
+end
 
 # Development
 # ===========
