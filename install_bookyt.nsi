@@ -1,23 +1,23 @@
 ; Java Launcher with automatic JRE installation
 ;-----------------------------------------------
  
-Name "Java Launcher"
-Caption "Java Launcher"
-; Icon "Java Launcher.ico"
-OutFile "SampleLauncher.exe"
+Name "Bookyt Launcher"
+Caption "Bookyt Launcher"
+;Icon "public/favicon.ico"
+OutFile "BookytLauncher.exe"
  
-VIAddVersionKey "ProductName" "Java Launcher"
+VIAddVersionKey "ProductName" "Bookyt Launcher"
 VIAddVersionKey "Comments" "A test comment"
-VIAddVersionKey "CompanyName" "Fake company"
-VIAddVersionKey "LegalTrademarks" "Java Launcher is a trademark of Fake company"
-VIAddVersionKey "LegalCopyright" "Fake company"
-VIAddVersionKey "FileDescription" "Java Launcher"
-VIAddVersionKey "FileVersion" "1.0.0"
-VIProductVersion "1.0.0.1"
+VIAddVersionKey "CompanyName" "CyT GmbH, 6330 Zug, info@cyt.ch"
+VIAddVersionKey "LegalTrademarks" "Bookyt is a MIT-licensed software."
+VIAddVersionKey "LegalCopyright" "CyT GmbH"
+VIAddVersionKey "FileDescription" "Bookyt Launcher"
+VIAddVersionKey "FileVersion" "0.9.0"
+VIProductVersion "0.9.0.1"
  
-!define CLASSPATH "sample.jar"
-!define CLASS "Sample"
-!define PRODUCT_NAME "Sample"
+!define CLASSPATH "bookyt.war"
+!define CLASS "Main"
+!define PRODUCT_NAME "Bookyt"
  
 ; Definitions for Java 6.0
 !define JRE_VERSION "6.0"
@@ -39,6 +39,7 @@ ShowInstDetails nevershow
 !insertmacro GetParameters
 !include "WordFunc.nsh"
 !insertmacro VersionCompare
+!include UAC.nsh
  
 Section ""
   Call GetJRE
@@ -141,7 +142,7 @@ FunctionEnd
 ; Attempt to give the UAC plug-in a user process and an admin process.
 Function ElevateToAdmin
   UAC_Elevate:
-    UAC::RunElevated
+;    UAC_RunElevated
     StrCmp 1223 $0 UAC_ElevationAborted ; UAC dialog aborted by user?
     StrCmp 0 $0 0 UAC_Err ; Error?
     StrCmp 1 $1 0 UAC_Success ;Are we the real deal or just the wrapper?
