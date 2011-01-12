@@ -25,7 +25,7 @@ sqlite: &sqlite
 # SQLite3 for jruby
 jruby_sqlite: &jruby_sqlite
   adapter: jdbcsqlite3
-  database: db/development.sqlite3
+  pool: 5
   timeout: 5000
 
 # MySQL for ruby
@@ -41,17 +41,17 @@ mysql: &mysql
 # Environments
 # ============
 production:
-  database: db/production.sqlite3
-  <<: *sqlite
+  database: C:\bookyt\production.sqlite3
+  <<: *jruby_sqlite
 
 development:
-  database: db/development.sqlite3
-  <<: *sqlite
+  database: C:\bookyt\development.sqlite3
+  <<: *jruby_sqlite
 
 demo:
-  database: db/demo.sqlite3
-  <<: *sqlite
+  database: C:\bookyt\demo.sqlite3
+  <<: *jruby_sqlite
 
 test:
-  database: db/test.sqlite3
-  <<: *sqlite
+  database: C:\bookyt\test.sqlite3
+  <<: *jruby_sqlite
