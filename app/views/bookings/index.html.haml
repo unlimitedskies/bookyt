@@ -1,4 +1,7 @@
 = contextual_links
 
-%h2= t_crud
-= render 'list'
+%h1= t_crud
+= paginated_section @bookings do
+  = render 'list'
+
+= render 'bookings/sidebar'

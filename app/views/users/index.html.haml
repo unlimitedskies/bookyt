@@ -1,4 +1,6 @@
 = contextual_links
+
 %h1= t_title
 
-= render 'list'
+= paginated_section @users do
+  = render 'list'

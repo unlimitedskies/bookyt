@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123090816) do
+ActiveRecord::Schema.define(:version => 20101124122259) do
 
   create_table "account_types", :force => true do |t|
     t.string "name",  :limit => 100
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(:version => 20101123090816) do
 
   add_index "addresses", ["vcard_id"], :name => "addresses_vcard_id_index"
 
+  create_table "booking_imports", :force => true do |t|
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "csv_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "booking_templates", :force => true do |t|
     t.string   "title"
     t.decimal  "amount"
@@ -59,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20101123090816) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+    t.string   "matcher"
   end
 
   create_table "bookings", :force => true do |t|
@@ -71,20 +81,20 @@ ActiveRecord::Schema.define(:version => 20101123090816) do
     t.string  "scan"
     t.string  "debit_currency",                    :default => "CHF"
     t.string  "credit_currency",                   :default => "CHF"
-    t.decimal "exchange_rate",                     :default => 1.0
+    t.float   "exchange_rate",                     :default => 1.0
   end
 
   create_table "days", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date"
-    t.decimal  "cash"
-    t.decimal  "card_turnover"
-    t.decimal  "gross_turnover"
-    t.decimal  "net_turnover"
-    t.integer  "client_count"
-    t.integer  "product_count"
-    t.decimal  "expenses"
+    t.decimal  "cash",            :default => 0.0
+    t.decimal  "card_turnover",   :default => 0.0
+    t.decimal  "gross_turnover",  :default => 0.0
+    t.decimal  "net_turnover",    :default => 0.0
+    t.integer  "client_count",    :default => 0
+    t.integer  "product_count",   :default => 0
+    t.decimal  "expenses",        :default => 0.0
     t.decimal  "credit_turnover", :default => 0.0
     t.decimal  "discount",        :default => 0.0
   end
@@ -97,15 +107,6 @@ ActiveRecord::Schema.define(:version => 20101123090816) do
     t.decimal  "daily_workload"
     t.integer  "employee_id"
     t.integer  "employer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "importers", :force => true do |t|
-    t.string   "csv_file_name"
-    t.string   "csv_content_type"
-    t.integer  "csv_file_size"
-    t.datetime "csv_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

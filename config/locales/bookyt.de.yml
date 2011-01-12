@@ -27,6 +27,7 @@ de:
       invoice: Rechnung
       tenant: Mandant
       user: Benutzer
+      booking_import: Buchungsimport
 
     attributes:
       title:            Titel
@@ -138,6 +139,17 @@ de:
         roles:                          Rollen
         role_texts:                     Rollen
         name:                           Name
+        full_name:                      Name
+        date_of_birth:                  Geburtsdatum
+        date_of_death:                  Todestag
+        sex:                            Geschlecht
+        post_office_box:                Postfach  
+        extended_address:               Adresszusatz
+        street_address:                 Strasse
+        locality:                       Ort
+        region:                         Region
+        postal_code:                    PLZ   
+        country_name:                   Land
       vcard:
         full_name:                      Name
       address:
@@ -145,6 +157,9 @@ de:
         extended_address:               Postfach
         postal_code:                    PLZ
         locality:                       Ort
+      booking_import:
+        csv:                            CSV-Datei
+        created_at:                     Importiert am
 
   formtastic:
     hints:
@@ -166,6 +181,8 @@ de:
       select_booking_template: %{model} anlegen
       select_booking: %{model} anlegen
       current: Aktueller %{model}
+      day:
+        new: Abrechnung von %{day}
     flash:
       created_html: %{message} angelegt
 
@@ -183,12 +200,12 @@ de:
     capital_assets:   Anlagevermögen
     debt_capital:     Fremdkapital
     working_capital:  Umlaufvermögen
-    balance_for:      Bilanz für {{company}} {{year}}
+    balance_report_for: Bilanz für %{company} per %{per}
+    profit_report_for:  Erfolgsrechnung für %{company} per %{per}
+    carry_booking:    Übertrag
     invoices:
-      payment_no:             Rechnung Nr. {{payment_no}}
+      payment_no:             Rechnung Nr. %{payment_no}
       invoicing_party:        Rechnungssteller
-    profit:
-      earnings_statement_for:   Erfolgsrechnung für {{company}} {{year}}
     main_navigation:
       new_day:                  Tagesabschluss
       new_booking:              Neue Buchung
@@ -210,6 +227,9 @@ de:
       settings:                 Einstellungen
       overview:                 Übersicht
       importer:                 Importer
+      new_employee:             Neuer Mitarbeiter
+      new_customer:             Neuer Kunde
+      account_types:            Kontenarten
       tooltip:
         new_day:  Hier können Sie einen neuen Tagesabschluss gemäss Registrierkasse buchen
         new_booking: Hier können Sie eine neue Buchung für die Finanzbuchhaltung erstellen
@@ -230,6 +250,13 @@ de:
         invoices: Listet alle Rechnungen auf
         settings: Hier können die nötigen Einstellungen für Bookyt gemacht werden
         overview: Gibt Ihnen eine Übersicht über die Funktionen
-        importer: Imports Data
+        importer: Importiert Buchungsdaten aus einer .csv Datei
+        new_customer: Erstellt einen neuen Kunden
+        new_employee: Erstellt einen neuen Mitarbeiter an
+        current_user: Zeigt die Details des aktuell angemeldeten Benutzers
+        user_index: Zeigt eine Liste aller Benutzer
+        current_tenant: Zeigt die Details des aktiven Mandanten
+        tenant_index: Zeigt eine Liste aller Mandanten
+        account_types: Zeigt eine Liste aller Kontentypen (Anlagevermögen, Umlaufvermögen, ...)
     overview:
       title: Übersicht

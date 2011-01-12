@@ -4,13 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role_texts
 
   # Tenancy
   belongs_to :tenant
   
   # Authorization roles
   has_and_belongs_to_many :roles, :autosave => true
+  scope :by_role, lambda{|role| include(:roles).where(:name => role)}
   attr_accessible :role_texts
   
   def role?(role)
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
   belongs_to :person
   attr_accessible :person_attributes
   accepts_nested_attributes_for :person
+  validates_presence_of :person
   
   # Shortcuts
   def current_company
@@ -40,6 +42,6 @@ class User < ActiveRecord::Base
 
   # Helpers
   def to_s
-    person.try(:to_s)
+    person.try(:to_s) || ""
   end
 end

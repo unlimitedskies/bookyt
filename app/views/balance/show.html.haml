@@ -3,13 +3,8 @@
   td.action-links {display: none}
 
 %h1
-  = t('bookyt.balance_for', :company => @company, :year => @year)
+  = t('bookyt.balance_report_for', :company => @company, :per => @date)
 #balance-sheet
-  = semantic_form_for :balance do |f|
-    = f.inputs do
-      = f.input :date, :as => :date_field, :input_html => {:size => 10, :style => 'text-align: right'}
-    = f.buttons do
-      = f.commit_button t('bookyt.show')
   %table
     %tr
       %th
@@ -17,7 +12,7 @@
       %th
         = t('bookyt.debt_capital')
     %tr
-      %td.current-assets{:style => "background-color: #00FF00"}
+      %td.current-assets{:style => "background-color: #cccccc"}
         %table{:width => "100%"}
           = render 'accounts/list_header'
           = render Account.current_assets.all.select{|a| a.saldo(@date) != 0.0}
@@ -26,7 +21,7 @@
               = t('bookyt.total')
             %th.currency= currency_fmt(Account.current_assets.saldo(@date))
           %tr
-      %td{:style => "background-color: #FF0000"}
+      %td{:style => "background-color: #cccccc"}
         %table{:width => "100%"}
           = render 'accounts/list_header'
           = render Account.outside_capital.all.select{|a| a.saldo(@date) != 0.0}
@@ -41,7 +36,7 @@
       %th
         = t('bookyt.equity_capital')
     %tr
-      %td{:style => "background-color: #00AA00"}
+      %td{:style => "background-color: #aaaaaa"}
         %table{:width => "100%"}
           = render 'accounts/list_header'
           = render Account.capital_assets.all.select{|a| a.saldo(@date) != 0.0}
@@ -50,7 +45,7 @@
               = t('bookyt.total')
             %th.currency= currency_fmt(Account.capital_assets.saldo(@date))
           %tr
-      %td{:style => "background-color: #AA0000"}
+      %td{:style => "background-color: #aaaaaa"}
         %table{:width => "100%"}
           = render 'accounts/list_header'
           = render Account.equity_capital.all.select{|a| a.saldo(@date) != 0.0}
@@ -70,3 +65,5 @@
       %th
         = t('bookyt.difference')
       %td.currency= currency_fmt(difference)
+
+  = render 'bookings/sidebar'
