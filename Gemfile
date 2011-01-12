@@ -50,7 +50,6 @@ end
 
 # Standard helpers
 # ================
-gem 'styleyt', :git => 'http://github.com/CyTeam/styleyt.git'
 
 gem 'haml'
 gem 'compass', '>= 0.10.4'
@@ -59,7 +58,7 @@ gem 'fancy-buttons'
 gem 'simple-navigation'
 
 gem 'formtastic', '~> 1.1.0'
-gem 'will_paginate', :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
+gem 'will_paginate'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'i18n_rails_helpers', '~> 0.8.0'
