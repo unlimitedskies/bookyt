@@ -33,3 +33,5 @@ config/deploy/*.rb
 # Bookyt Data
 # ===========
 public/booking_imports
+*.exe
+*.war
