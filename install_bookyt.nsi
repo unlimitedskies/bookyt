@@ -27,7 +27,7 @@ VIProductVersion "0.9.0.1"
  
 ; use javaw.exe to avoid dosbox.
 ; use java.exe to keep stdout/stderr
-!define JAVAEXE "javaw.exe"
+!define JAVAEXE "java.exe"
  
 RequestExecutionLevel user
 SilentInstall silent
@@ -42,6 +42,7 @@ ShowInstDetails nevershow
 !include UAC.nsh
  
 Section ""
+  Call DeployDatabase
   Call GetJRE
   Pop $R0
  
@@ -52,6 +53,16 @@ Section ""
   SetOutPath $EXEDIR
   Exec $0
 SectionEnd
+
+!define FileCopy `!insertmacro FileCopy`
+!macro FileCopy FilePath TargetDir
+  CreateDirectory `${TargetDir}`
+  CopyFiles `${FilePath}` `${TargetDir}`
+!macroend
+
+Function DeployDatabase
+  ${FileCopy} "db\production.sqlite3" 'C:\bookyt\'
+FunctionEnd
  
 ;  returns the full path of a valid java.exe
 ;  looks in:
