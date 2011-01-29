@@ -57,7 +57,7 @@ gem 'fancy-buttons'
 gem 'simple-navigation'
 
 gem 'formtastic', '~> 1.1.0'
-gem 'will_paginate'
+gem 'will_paginate', '3.0.pre2'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'i18n_rails_helpers', '~> 0.8.0'
