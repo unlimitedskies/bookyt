@@ -14,8 +14,8 @@ class Account < ActiveRecord::Base
   # Associations
   belongs_to :account_type
   
-  has_many :credit_bookings, :class_name => "Booking", :foreign_key => "credit_account_id"
-  has_many :debit_bookings, :class_name => "Booking", :foreign_key => "debit_account_id"
+  has_many :credit_bookings, :class_name => "Booking", :foreign_key => "credit_account_id", :group => 'group_ident, value_date', :select => 'title, value_date, comments, debit_account_id, credit_account_id, sum(amount) as amount'
+  has_many :debit_bookings, :class_name => "Booking", :foreign_key => "debit_account_id", :group => 'group_ident, value_date', :select => 'title, value_date, comments, debit_account_id, credit_account_id, sum(amount) as amount'
 
   def bookings
     Booking.by_account(id)

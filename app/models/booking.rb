@@ -16,7 +16,7 @@ class Booking < ActiveRecord::Base
   scope :by_value_period, lambda {|from, to| where(:value_date => (from..to)) }
   
   scope :by_account, lambda {|account_id|
-    { :conditions => ["debit_account_id = :account_id OR credit_account_id = :account_id", {:account_id => account_id}] }
+    { :conditions => ["debit_account_id = :account_id OR credit_account_id = :account_id", {:account_id => account_id}], :group => 'group_ident, value_date', :select => 'group_ident AS id, title, value_date, comments, debit_account_id, credit_account_id, sum(amount) as amount' }
   } do
     # Returns array of all booking titles.
     def titles
