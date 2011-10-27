@@ -28,6 +28,39 @@ function addDirtyForm() {
   $(".form-view").focusin(function() {makeEditForm($(this))});
 }
 
+// Time Input
+function pad(num, size) {
+  var s = num + "";
+  while (s.length < size) s = "0" + s;
+  return s;
+}
+
+function formatMinutes(minutes) {
+  return pad(Math.floor(minutes / 60), 2) + ":" + pad(minutes % 60, 2);
+}
+
+function parseMinutes(minutes) {
+  var hours, minutes = minutes.split(":");
+  return hours * 60 + minutes;
+}
+
+function addTimeInputBehaviour() {
+  $( ".time_slider" ).slider({
+    range: true,
+    min: 0,
+    max: 1440,
+    step: 15,
+    values: [ 480, 1020 ],
+    slide: function( event, ui ) {
+      $("#activity_duration_from").val(formatMinutes(ui.values[ 0 ]));
+      $("#activity_duration_to").val(formatMinutes(ui.values[ 1 ]));
+    }
+  });
+//  $(".time_slider").slider("values", 0, parseMinutes($("#activity_duration_from").val()));
+//  $(".time_slider").slider("values", 1, parseMinutes($("#activity_duration_to").val()));
+}
+
+
 // Initialize behaviours
 function initializeBehaviours() {
   // from cyt.js
@@ -43,6 +76,7 @@ function initializeBehaviours() {
   // application
   addAlternateTableBehaviour();
   addDirtyForm();
+  addTimeInputBehaviour();
 }
 
 // Loads functions after DOM is ready
