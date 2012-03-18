@@ -1,13 +1,14 @@
-%tr[debit_invoice]
-  %td= debit_invoice.value_date
-  %td
-    = link_to debit_invoice, {'data-href-container' => 'tr'} do
-      = debit_invoice.to_s
-      = invoice_label(debit_invoice)
-  %td= link_to debit_invoice.customer, debit_invoice.customer
-  %td= debit_invoice.due_date
-  %td.currency= currency_fmt(debit_invoice.amount)
-  %td.currency= currency_fmt(debit_invoice.balance)
-  %td.action-links
-    = list_link_for(:edit, debit_invoice)
-    = list_link_for(:copy, debit_invoice)
+- cache debit_invoice do
+  %tr[debit_invoice]
+    %td= debit_invoice.value_date
+    %td
+      = link_to debit_invoice, {'data-href-container' => 'tr'} do
+        = debit_invoice.to_s
+        = invoice_label(debit_invoice)
+    %td= link_to debit_invoice.customer, debit_invoice.customer
+    %td= debit_invoice.due_date
+    %td.amount.currency= currency_fmt(debit_invoice.amount)
+    %td.balance.currency= currency_fmt(debit_invoice.balance)
+    %td.action-links
+      = list_link_for(:edit, debit_invoice)
+      = list_link_for(:copy, debit_invoice)
