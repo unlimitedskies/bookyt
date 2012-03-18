@@ -212,6 +212,15 @@ function initAccounting() {
   }
 }
 
+function updateSum(column_selector, items_selector, sum_selector) {
+  var sum = 0;
+  $(items_selector).find(column_selector).each(function() {
+    sum += accounting.parse($(this).text());
+  });
+
+  $(sum_selector).find(column_selector).text(accounting.formatNumber(sum));
+}
+
 // Initialize behaviours
 function initializeBehaviours() {
   // Init settings
@@ -234,6 +243,9 @@ function initializeBehaviours() {
   addCalculateTotalAmountBehaviour();
 
   updateLineItems();
+
+  updateSum('.amount', 'table.invoices tbody tr', 'table.invoices tfoot');
+  updateSum('.balance', 'table.invoices tbody tr', 'table.invoices tfoot');
 
   // twitter bootstrap
   $(function () {
