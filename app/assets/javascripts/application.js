@@ -9,6 +9,7 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require select2
+//= require best_in_place
 //= require accounting
 //= require accounting-jquery
 //= require bootstrap.datepicker
@@ -253,6 +254,9 @@ function initializeBehaviours() {
   $('.select2').select2({
       allowClear: true
   });
+
+  // best_in_place
+  $(".best_in_place").best_in_place();
 }
 
 // Loads functions after DOM is ready

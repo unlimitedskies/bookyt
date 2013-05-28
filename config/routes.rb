@@ -143,6 +143,7 @@ Bookyt::Application.routes.draw do
       get :copy
     end
   end
+  resources :bookings_batch_edit, :only => [:index, :update]
 
   resources :direct_bookings
 
