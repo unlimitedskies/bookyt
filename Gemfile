@@ -22,7 +22,7 @@ group :assets do
   gem 'compass-rails'
 end
 group :production do
-  gem 'therubyracer', '= 0.11.4' # Fix build problems
+  gem 'therubyracer'
   gem 'libv8'
 end
 
@@ -76,7 +76,6 @@ group :test, :development do
   # Console
   gem 'pry-rails'
   gem 'pry-doc'
-  gem 'pry-debugger'
 end
 
 group :tools do
